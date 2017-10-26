@@ -1,0 +1,59 @@
+@import "couleurs";
+
+html, body {
+	background-color:lighten(@gris,5%);
+}
+
+/* Text colors */
+
+.text-color(@color) {
+	color:@color;
+}
+
+.text-bleu {
+	.text-color(@bleu);
+}
+
+.text-rouge {
+	.text-color(@rouge);
+}
+
+.text-jaune {
+	.text-color(@jaune);
+}
+
+.text-bleu-ciel {
+	.text-color(@bleu-ciel);
+}
+
+/* Background colors */
+.back-color(@color) {
+	background-color:@color;
+}
+
+/* Side panel */
+.sidepanel { 
+	position:fixed;
+	height:100%;
+	width:0;
+	right:0;
+	z-index:9999;
+
+	.back-color(@jaune);
+
+	transition:all 0.2s ease-out;
+
+	&.visible {
+		width:95%;
+	}
+}
+
+/* Affichage */
+.content {
+	padding:10px;
+	height:100%;
+
+	&.white {
+		.back-color(@blanc);
+	}
+}

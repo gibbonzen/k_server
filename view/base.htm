@@ -1,13 +1,19 @@
 <!DOCTYPE html>
 <html lang="fr">
-  <head>
+	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 		<title>Bootstrap 101 Template</title>
 
 		<!-- Bootstrap -->
-		<link href="lib/bootstrap/bootstrap-3.3.7/css/bootstrap.min.css" rel="stylesheet">
+		<link href="lib/bootstrap/bootstrap-4.0.0/css/bootstrap.min.css" rel="stylesheet">
+
+		<!-- Font Awesome -->
+		<link href="lib/font-awesome/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+		<!-- Custom CSS --> 
+		<link rel="stylesheet" href="css/base.css">
 
 		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -17,23 +23,105 @@
 		<![endif]-->
 	</head>
 	<body>
-    <nav class="navbar navbar-default">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">Kaamelott</a>
-        </div>
-      </div>
-    </nav>
 
-		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-		<!-- Include all compiled plugins (below), or include individual files as needed -->
-		<script src="lib/bootstrap/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<div>
+			<a href="#" class="navbar-brand">Kaamelott</a>
+
+			<span class="navbar-text">
+				<span class="fa fa-thermometer-quarter text-rouge"></span> 20°C
+				<span class="fa fa-tint text-bleu-ciel"></span> 10%
+			</span>
+		</div>
+		
+		<button class="navbar-toggler menuPanelHide" type="button" data-toggle="collapse" data-target="#toggleNavigation" aria-controls="toggleNavigation" aria-expanded="false">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<div class="collapse navbar-collapse" id="toggleNavigation">
+			<ul class="navbar-nav ml-auto">
+
+				<li class="nav-item ml-auto">
+					<a class="nav-link" href="#" id="menuParameters" role="button">
+						<span class="fa fa-cog"></span> Paramètres
+					</a>
+				</li>
+				<div class="dropdown-divider"></div>
+
+				<li class="nav-item dropdown ml-auto">
+					<a href="#" class="nav-link dropdown-toggle" id="navDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						<span class="fa fa-user-circle"></span>
+					</a>
+					<div class="dropdown-menu dropdown-menu-right mr-auto">
+						<h6 class="dropdown-header">Hardware</h6>
+						<a href="#" class="dropdown-item">
+							<span class="fa fa-bolt"></span> Démarrer
+						</a>
+						<a href="#" class="dropdown-item">
+							<span class="fa fa-refresh"></span> Redémarrer
+						</a>
+						<a href="#" class="dropdown-item">
+							<span class="fa fa-power-off"></span> Arrêter
+						</a>
+						<div class="dropdown-divider"></div>
+						<h6 class="dropdown-header">Mon compte</h6>
+						<a href="#" class="dropdown-item">
+							<span class="fa fa-user-o"></span> Profil
+						</a>
+						<a href="#" class="dropdown-item">
+							<span class="fa fa-lock"></span> Déconnexion
+						</a>
+					</div>
+				</li>
+
+			</ul>
+		</div>
+	</nav>
+
+	<div class="sidepanel" id="panelParameters">
+		<ul>
+			<li><a href="#">Caméra</a></li>
+			<li><a href="#">Porte</a></li>
+			<li><a href="#">Eau</a></li>
+			<li><a href="#">Nourriture</a></li>
+			<li><a href="#">Nids</a></li>
+			<li class="divider"></li>
+			<li><a href="#">Population</a></li>
+		</ul>
+	</div>
+
+
+	<section class="container-fluid menuPanelHide">
+
+		<div class="row">
+			<div class="col-lg-4">
+				<div class="embed-responsive embed-responsive-16by9">
+					<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/01KVhyBNPDw"></iframe>
+				</div>		
+			</div>
+			<div class="col-lg-2">
+				<div class="content white">Test</div>
+			</div>
+			<div class="col-lg-3">
+				<div class="content white">Test</div>
+			</div>
+			<div class="col-lg-3">
+				<div class="content white">Test</div>
+			</div>
+
+		</div>
+
+		<div class="row display-flex">
+			<div class="col-xs-12 col-lg-4">Test</div>
+			<div class="col-xs-12 col-lg-4">Test</div>
+			<div class="col-xs-12 col-lg-4">Test</div> 
+		</div>
+
+	</section>
+
+		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>
+		<script src="lib/bootstrap/bootstrap-4.0.0/js/bootstrap.min.js"></script>
+		<script src="js/fonc_aff.js"></script>
 	</body>
 </html>
