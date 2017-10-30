@@ -1,1 +1,50 @@
-html,body{background-color:#34362e}.text-bleu{color:blue}.text-rouge{color:red}.text-jaune{color:#EEFF41}.text-bleu-ciel{color:#99f}.sidepanel{position:fixed;height:100%;width:0;right:0;z-index:9999;background-color:#EEFF41;transition:all .2s ease-out}.sidepanel.visible{width:95%}.content{padding:10px;height:100%}.content.white{background-color:white}/*# sourceMappingURL=base.css.map */
+html,
+body {
+  background-color: #34362e;
+}
+/* Text colors */
+.text-vert {
+  color: green;
+}
+.text-bleu {
+  color: blue;
+}
+.text-rouge {
+  color: red;
+}
+.text-jaune {
+  color: #EEFF41;
+}
+.text-bleu-ciel {
+  color: #9999ff;
+}
+/* Background colors */
+/* Side panel */
+.sidepanel {
+  position: fixed;
+  height: 100%;
+  width: 0;
+  right: 0;
+  z-index: 9999;
+  opacity: 0.9;
+  background-color: #272822;
+  transition: all 0.2s ease-out;
+}
+.sidepanel.visible {
+  width: 95%;
+}
+/*
+* Return la couleur @tcolor
+*/
+/* Affichage */
+.content {
+  padding: 10px;
+  height: 100%;
+}
+.content.white {
+  background-color: white;
+}
+.inline * {
+  display: inline;
+}
+/*# sourceMappingURL=base.css.map */

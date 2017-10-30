@@ -12,8 +12,12 @@
 		<!-- Font Awesome -->
 		<link href="lib/font-awesome/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
+
+		<!-- Kicons -->
+		<link href="css/kicons.css" rel="stylesheet">
 		<!-- Custom CSS --> 
 		<link rel="stylesheet" href="css/base.css">
+
 
 		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -24,8 +28,8 @@
 	</head>
 	<body>
 
-	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-		<div>
+	<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+		<!--<div>
 			<a href="#" class="navbar-brand">Kaamelott</a>
 
 			<span class="navbar-text">
@@ -76,9 +80,34 @@
 
 			</ul>
 		</div>
+		-->
+
+		<a href="#" class="navbar-brand">Kaamelott</a>
+
+		<div class="navbar-text inline">
+			<a class="nav-link" href="#" id="menuRoyaume">
+				<span class="kicon kicon-castle text-rouge"></span>
+			</a>
+			<a class="nav-link" href="#" id="menuParameters">
+				<span class="fa fa-cog text-jaune"></span>
+			</a>
+			<a class="nav-link" href="#" id="menuProfil">
+				<span class="fa fa-user-circle text-vert"></span>
+			</a>
+		</div>
+
+
 	</nav>
 
-	<div class="sidepanel" id="panelParameters">
+
+	<div class="sidepanel royaume">
+		<ul>
+			<li class="fa fa-thermometer-quarter text-rouge"> 20°C</li>
+			<li class="fa fa-tint text-bleu-ciel"> 10%</li>
+		</ul>
+	</div>
+
+	<div class="sidepanel parameters">
 		<ul>
 			<li><a href="#">Caméra</a></li>
 			<li><a href="#">Porte</a></li>
@@ -90,6 +119,16 @@
 		</ul>
 	</div>
 
+	<div class="sidepanel profil">
+		<ul>
+			<li><a href="#">Démarrer</a></li>
+			<li><a href="#">Redémarrer</a></li>
+			<li><a href="#">Arrêter</a></li>
+			<li class="divider"></li>
+			<li><a href="#">Mon profil</a></li>
+			<li><a href="#">Déconnexion</a></li>
+		</ul>
+	</div>
 
 	<section class="container-fluid menuPanelHide">
 

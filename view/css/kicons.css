@@ -1,0 +1,19 @@
+@font-face {
+  font-family: 'kicons';
+  src: url('fonts/kicons.eot?lntq1j');
+  src: url('fonts/kicons.eot?lntq1j#iefix') format('embedded-opentype'), url('fonts/kicons.ttf?lntq1j') format('truetype'), url('fonts/kicons.woff?lntq1j') format('woff'), url('fonts/kicons.svg?lntq1j#kicons') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+.kicon {
+  display: inline-block;
+  font: normal normal normal 14px/1 kicons;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.kicon-castle:before {
+  content: "\e900";
+}
+/*# sourceMappingURL=kicons.css.map */
