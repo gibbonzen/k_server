@@ -16,4 +16,13 @@
 .kicon-castle:before {
   content: "\e900";
 }
+.kicon-poule-prison:before {
+  content: "\e901";
+}
+.kicon-poule-simple:before {
+  content: "\e902";
+}
+.kicon-poules-population:before {
+  content: "\e903";
+}
 /*# sourceMappingURL=kicons.css.map */

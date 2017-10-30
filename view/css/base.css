@@ -18,6 +18,9 @@ body {
 .text-bleu-ciel {
   color: #9999ff;
 }
+.text-bleu-elec {
+  color: #2c75ff;
+}
 /* Background colors */
 /* Side panel */
 .sidepanel {
@@ -40,9 +43,17 @@ body {
 .content {
   padding: 10px;
   height: 100%;
+  color: white;
 }
 .content.white {
   background-color: white;
+}
+.content div {
+  display: block;
+}
+.content a.slideMenu {
+  display: block;
+  color: white;
 }
 .inline * {
   display: inline;
