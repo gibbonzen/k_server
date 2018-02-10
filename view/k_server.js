@@ -5,10 +5,12 @@ const bodyParser = require('body-parser')
 
 // Utils
 const path = require('path')
+const fs = require('fs')
 const EventEmitter = require('events')
 const request = require('request')
 
 app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({extended: true}))
 
 app.use('/lib', express.static('lib'))
 app.use('/css', express.static('css'))
@@ -25,17 +27,34 @@ const io = require('socket.io-client')
 const imageListener = new EventEmitter()
 
 const BOUNDARY = "BOUNDARY"
-app.get('/stream', (req, res) => {
+app.post('/stream', (req, res) => {
+	let options = {
+		uri: 'http://localhost:3000/camera/stream',
+		method: 'POST',
+		headers: {'Content-Type': 'application/json'},
+		json: true,
+		body: req.body
+	}
+	request(options, (err, res) => {
+		if(!err) ok(res)
+		else ko()
+	})
 
+	function ok(data) {
+		res.end()
+	}
+
+	function ko() {
+		res.end()
+	}
+})
+
+app.get('/stream', (req, res) => {
 	let headersStream = {
 		'Cache-Control': 'no-cache', 
 		'Cache-Control': 'private', 
 		'Pragma': 'no-cache', 
 		'Content-Type': `multipart/x-mixed-replace; boundary="${BOUNDARY}"`
-	}
-
-	let headersImage = { 
-		'Content-Type': 'image/jpeg'
 	}
 
 	function requeteKShadowCameraStatus(callback) {
@@ -45,13 +64,14 @@ app.get('/stream', (req, res) => {
 			headers: {'Content-Type': 'application/json'}
 		}
 		request(options, (err, res) => {
-			doStream(res.body)
+			let body = undefined
+			if(!err) body = res.body
+			doStream(JSON.parse(body))
 		})
 	}
 
 	function startStreaming() {
 		res.writeHead(200, headersStream)
-
 		imageListener.on('newImage', (image) => {
 			res.write(`--${BOUNDARY}\r\n`)
 			res.write("Content-Type: image/jpeg\r\n")
@@ -64,14 +84,18 @@ app.get('/stream', (req, res) => {
 
 	function stopStreaming() {
 		imageListener.removeAllListeners()
-		res.writeHead(200, headersImage)
-		res.end('image.jpg')
+		let image = fs.readFileSync('thumb.jpg')
+
+		res.writeHead(200, {
+			'Content-Type': 'image/jpeg',
+			'Content-Length': image.length
+		})
+		res.write(image)
+		res.end()
 	}
 
 	function doStream(camera) {
-		console.log(camera)
-
-		if(camera.status === 1) {
+		if(camera !== undefined && camera.status === 1) {
 			startStreaming()
 		}
 		else {
@@ -86,8 +110,7 @@ app.get('/stream', (req, res) => {
 })
 
 function streamSocketConnection() {
-	let socket = io('http://localhost:3000')
-
+	const socket = io('http://localhost:3000/stream')
 	socket.on('newImage', (image) => {
 		imageListener.emit('newImage', image)
 	})
@@ -95,4 +118,5 @@ function streamSocketConnection() {
 	socket.on('close', () => {
 		socket.close()
 	})
+
 }
