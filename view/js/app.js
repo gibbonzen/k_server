@@ -1,53 +1,74 @@
-var streamStatus = false
-
 $(function($){
+	var streamStatus = false
+	var streamClient = false
 
+	// Add mouse listener on stream thumb
 	onClickStream()
-	toggleStreamClass()
 
-	/////
+	//////////////
+	//  SOCKET  //
+	//////////////
+	const socket = io.connect()
+	socket.on('message', msg => {
+		console.log(msg)
+	})
 
-	function onClickStream() {
-		$('.stream').on('click', function() {
-			initDisplayStream()
-		})
+	socket.on('camera', (data) => {
+		let camera = JSON.parse(data)
+		streamStatus = camera.status === 1 ? true : false
+	})
+
+	//////////////
+	// FUNCTION //
+	//////////////
+	const consumeDataStream = function(data) {
+		console.log("call")
+		if(data.image) {
+			let img = new Image()
+			img.src = `data:image/jpeg;base64,${data.buffer}`
+			$('.stream > img').attr('src', img.src)
+		}
 	}
 
-	function initDisplayStream() {
-		let data = { 'action': streamStatus ? 'stop' : 'start'}
-		$.ajax({
-			type: 'POST',
-			url: './stream',
-			data: data,
-			dataType: 'json',
-			success: function(data) {
-				startStreaming()
-			}
+	function onClickStream() {
+		let streamImg = $('.stream')
+		streamImg.on('click', function() {
+			toggleStream()
 		})
 
+	}
+
+	function toggleStream() {
+		let action;
+		if(streamClient) {
+			socket.removeListener('image', consumeDataStream)
+			streamClient = false
+			action = 'stop'
+		}
+		else {
+			socket.on('image', consumeDataStream)
+			streamClient = true
+			action = 'start'
+		}
+
+		socket.emit('stream_command', action)
+		toggleStreamClass()
 	}
 
 	function toggleStreamClass() {
-		let streamButton = $('.stream');
-		streamButton.on('click', function() {
-			let actionClass = $('.action')
-			let stopClass = $('.action.OnStop')
-			let startClass = $('.action.OnStart')
-			
-			if(stopClass.length > 0) {
-				actionClass.removeClass('OnStop')
-				actionClass.addClass('OnStart')
-				streamStatus = true
-			}
-			else {
-				actionClass.addClass('OnStop')
-				actionClass.removeClass('OnStart')
-				streamStatus = false
-			}
-		})
+		let actionClass = $('.action')
+		let stopClass = $('.action.OnStop')
+		let startClass = $('.action.OnStart')
+
+		if(streamClient) {
+			actionClass.removeClass('OnStop')
+			actionClass.addClass('OnStart')
+		}
+		else {
+			actionClass.removeClass('OnStart')
+			actionClass.addClass('OnStop')
+			$('.stream img').attr('src', '/stream')
+		}
 	}
 
-	function startStreaming() {
-		console.log('start streaming')
-	}
 })

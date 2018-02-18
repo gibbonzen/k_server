@@ -1,0 +1,10 @@
+{
+	"name": "k_server",
+	"type": "server",
+	"port": 8080,
+	"host": "192.168.0.88",
+	"k_shadow": {
+		"port": 3000,
+		"host": "192.168.0.20"
+	}
+}
